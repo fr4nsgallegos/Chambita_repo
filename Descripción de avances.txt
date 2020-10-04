@@ -1,0 +1,17 @@
+3-OCT-2020
+Se avanzó la arquitectura de division de tareas.
+Integración del repositorio
+Sara:
+	Implementación de Base de Datos
+	Diagrama de Base de Datos
+	Plantilla de Web Scraping
+Frans:
+	Diseño de maquetado Móvil
+	Avance con pantalla de inicio de sesion en Flutter
+	Diseño del Logo de la aplicación
+Jhoel:
+	Implementacion del maquetado web
+	Creacion del login
+ 	Creacion del registro de nuevo usuario
+	Creacion de un menu de navegacion
+	
