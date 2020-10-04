@@ -1,0 +1,6 @@
+package com.example.chambita
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
