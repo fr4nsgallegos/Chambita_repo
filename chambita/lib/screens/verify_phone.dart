@@ -1,29 +1,38 @@
 import 'package:chambita/screens/home_screen.dart';
-import 'package:chambita/screens/registro_usuario_screen.dart';
+import 'package:chambita/screens/verify_phone.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:chambita/utilities/constants.dart';
 
-class LoginScreen extends StatefulWidget {
+class VerifyPhoneScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _VerifyPhoneScreenState createState() => _VerifyPhoneScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
   bool _rememberMe = false;
-  TextEditingController txtCorreo = TextEditingController();
-  TextEditingController txtPwd = TextEditingController();
+  TextEditingController txtCel = TextEditingController();
 
-  Future<String> logIn(String email, String password) async {
+  Future<String> signUpPhone(String phone) async {
     FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-
-    UserCredential credential = await firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
-
-    print(credential.user.uid);
-
-    return credential.user.uid;
+    await firebaseAuth.verifyPhoneNumber(
+      phoneNumber: phone,
+      verificationCompleted: (phoneAuthCredential) {
+        firebaseAuth.signInWithCredential(phoneAuthCredential).then((_) {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeScreen(),
+              ));
+        });
+      },
+      verificationFailed: (error) {
+        print(error.toString());
+      },
+      codeSent: (verificationId, forceResendingToken) {},
+      codeAutoRetrievalTimeout: (verificationId) {},
+    );
   }
 
   Widget _buildEmailTF() {
@@ -40,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
-            controller: txtCorreo,
+            controller: txtCel,
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.white,
@@ -53,43 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Icons.email,
                 color: Colors.white,
               ),
-              hintText: 'Ingresa tu correo',
-              hintStyle: kHintTextStyle,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPasswordTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Contraseña',
-          style: kLabelStyle,
-        ),
-        SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextField(
-            controller: txtPwd,
-            obscureText: true,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.white,
-              ),
-              hintText: 'Ingresar tu contraseña',
+              hintText: 'Ingresa tu celular',
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -146,8 +119,8 @@ class _LoginScreenState extends State<LoginScreen> {
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () async {
-          String uid = await logIn(txtCorreo.text, txtPwd.text);
-          if (uid.isNotEmpty) {
+          String uid = await signUpPhone(txtCel.text);
+          if (uid != null && uid.isNotEmpty) {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -161,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         color: Colors.white,
         child: Text(
-          'Iniciar Sesión',
+          'Registro',
           style: TextStyle(
             color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -242,16 +215,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildSignupBtn() {
     return GestureDetector(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => RegistroUsuarioScreen(),
-          )),
+      onTap: () {
+        Navigator.pop(context);
+      },
       child: RichText(
         text: TextSpan(
           children: [
             TextSpan(
-              text: 'No tienes una cuenta? ',
+              text: 'Ya tienes una cuenta? ',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -259,7 +230,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             TextSpan(
-              text: 'Regístrate',
+              text: 'Inicia Sesión',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -311,7 +282,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: <Widget>[
                       Logo(),
                       Text(
-                        'Inicia Sesión',
+                        'Verifica Tu numero',
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'OpenSans',
@@ -324,13 +295,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: 15.0,
                       ),
-                      _buildPasswordTF(),
-                      _buildForgotPasswordBtn(),
-                      _buildRememberMeCheckbox(),
                       _buildLoginBtn(),
-                      _buildSignInWithText(),
-                      _buildSocialBtnRow(),
-                      _buildSignupBtn(),
                     ],
                   ),
                 ),
