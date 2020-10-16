@@ -1,25 +1,25 @@
 import 'package:chambita/screens/home_screen.dart';
-import 'package:chambita/screens/registro_usuario_screen.dart';
+import 'package:chambita/screens/verify_phone.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:chambita/utilities/constants.dart';
 
-class LoginScreen extends StatefulWidget {
+class RegistroUsuarioScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegistroUsuarioScreenState createState() => _RegistroUsuarioScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegistroUsuarioScreenState extends State<RegistroUsuarioScreen> {
   bool _rememberMe = false;
   TextEditingController txtCorreo = TextEditingController();
   TextEditingController txtPwd = TextEditingController();
 
-  Future<String> logIn(String email, String password) async {
+  Future<String> singUp(String email, String password) async {
     FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
-    UserCredential credential = await firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
+    UserCredential credential = await firebaseAuth
+        .createUserWithEmailAndPassword(email: email, password: password);
 
     print(credential.user.uid);
 
@@ -146,12 +146,12 @@ class _LoginScreenState extends State<LoginScreen> {
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () async {
-          String uid = await logIn(txtCorreo.text, txtPwd.text);
+          String uid = await singUp(txtCorreo.text, txtPwd.text).toString();
           if (uid.isNotEmpty) {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomeScreen(),
+                  builder: (context) => VerifyPhoneScreen(),
                 ));
           }
         },
@@ -161,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         color: Colors.white,
         child: Text(
-          'Iniciar Sesión',
+          'Registro',
           style: TextStyle(
             color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -242,16 +242,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildSignupBtn() {
     return GestureDetector(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => RegistroUsuarioScreen(),
-          )),
+      onTap: () {
+        Navigator.pop(context);
+      },
       child: RichText(
         text: TextSpan(
           children: [
             TextSpan(
-              text: 'No tienes una cuenta? ',
+              text: 'Ya tienes una cuenta? ',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -259,7 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             TextSpan(
-              text: 'Regístrate',
+              text: 'Inicia Sesión',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -311,7 +309,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: <Widget>[
                       Logo(),
                       Text(
-                        'Inicia Sesión',
+                        'Registrate',
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'OpenSans',

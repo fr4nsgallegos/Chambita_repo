@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "444429114597",
+    "firebase_url": "https://chambita-9.firebaseio.com",
+    "project_id": "chambita-9",
+    "storage_bucket": "chambita-9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444429114597:android:cfde0320a5f1c0f2d9c80c",
+        "android_client_info": {
+          "package_name": "com.example.chambita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444429114597-up989cvp8b2ksbe9kr67gfarn51g9e3s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chambita",
+            "certificate_hash": "7f186d3060890c085def0d59cf944e88e5a42667"
+          }
+        },
+        {
+          "client_id": "444429114597-6aq4lok0jpmfvg5l0va1mq9bncsdomj6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPfkVtr2f1YhfQq722VZrDYTxKJoMEf20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444429114597-6aq4lok0jpmfvg5l0va1mq9bncsdomj6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
