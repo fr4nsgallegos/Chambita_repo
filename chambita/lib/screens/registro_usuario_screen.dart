@@ -1,4 +1,5 @@
 import 'package:chambita/screens/home_screen.dart';
+import 'package:chambita/screens/login_screen.dart';
 import 'package:chambita/screens/verify_phone.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -151,6 +152,7 @@ class _RegistroUsuarioScreenState extends State<RegistroUsuarioScreen> {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
+                  //builder: (context) => LoginScreen(),
                   builder: (context) => VerifyPhoneScreen(),
                 ));
           }

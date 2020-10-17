@@ -1,5 +1,6 @@
 import 'package:chambita/screens/home_screen.dart';
 import 'package:chambita/screens/registro_usuario_screen.dart';
+import 'package:chambita/screens/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -224,13 +225,37 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _buildSocialBtn(
-            () => print('Logueo con Facebook'),
+            () async {
+              signInWithGoogle().then((result) {
+                if (result != null) {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
+                      ));
+                }
+              });
+            },
+
+            /*{
+              signInWithGoogle().then((result) {
+                if (result != null) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return HomeScreen();
+                      },
+                    ),
+                  );
+                }
+              });
+            },*/
             AssetImage(
               'assets/logos/facebook.jpg',
             ),
           ),
           _buildSocialBtn(
-            () => print('Logueo con Google'),
+            () => print('Logueo con Googlee'),
             AssetImage(
               'assets/logos/google.jpg',
             ),
