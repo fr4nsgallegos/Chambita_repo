@@ -1,9 +1,3 @@
-// Copyright 2019 The Flutter Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-// ignore_for_file: public_member_api_docs
-
 import 'dart:async';
 import 'dart:convert' show json;
 
@@ -17,15 +11,6 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
     'https://www.googleapis.com/auth/contacts.readonly',
   ],
 );
-
-void main() {
-  runApp(
-    MaterialApp(
-      title: 'Google Sign In',
-      home: SignInDemo(),
-    ),
-  );
-}
 
 class SignInDemo extends StatefulWidget {
   @override
