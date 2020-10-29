@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">444429114597-6aq4lok0jpmfvg5l0va1mq9bncsdomj6.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://chambita-9.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">444429114597</string>
+    <string name="google_api_key" translatable="false">AIzaSyBPfkVtr2f1YhfQq722VZrDYTxKJoMEf20</string>
+    <string name="google_app_id" translatable="false">1:444429114597:android:cfde0320a5f1c0f2d9c80c</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBPfkVtr2f1YhfQq722VZrDYTxKJoMEf20</string>
+    <string name="google_storage_bucket" translatable="false">chambita-9.appspot.com</string>
+    <string name="project_id" translatable="false">chambita-9</string>
+</resources>

@@ -8,9 +8,9 @@ body{
 
 .registration-form form{
     background-color: #f7f7f7;
-    max-width: 500px;
+    max-width: 450px;
     margin: auto;
-    padding: 0px 100px;
+    padding: 0px 50px;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
 	border-bottom-left-radius: 30px;
@@ -24,10 +24,10 @@ body{
     border-radius: 50%;
     font-size: 40px;
     color: white;
-    width: 100px;
-    height: 100px;
+    width: 33%;
+    height: 33%;
     margin: auto;
-    margin-bottom: 50px;
+    margin-bottom: 5%;
     line-height: 100px;
 }
 

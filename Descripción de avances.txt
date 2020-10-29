@@ -14,4 +14,7 @@ Jhoel:
 	Creacion del login
  	Creacion del registro de nuevo usuario
 	Creacion de un menu de navegacion
+	Creacion de la lista de trabajos y la busqueda de los mismos
+	Creacion de la vista de detalles del trabajo
+	creacion del formulario de la publicacion de trabajos.
 	
