@@ -9,6 +9,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import { HomeComponent } from './home/home.component';
+import { TformularioComponent } from './tformulario/tformulario.component';
+import { TdetallesComponent } from './tdetalles/tdetalles.component';
 
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 
@@ -18,14 +21,17 @@ import {
 } from 'angularx-social-login';
 
 const appRoutes: Routes = [
-  { path: 'home', component: AppComponent},
+  { path: 'chambitas', component: AppComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'registeruser', component: RegisterUserComponent}
+  { path: 'registeruser', component: RegisterUserComponent},
+  { path: 'home', component: HomeComponent},
+  { path: 'tformulario', component: TformularioComponent},
+  { path: 'tdetalles', component: TdetallesComponent}
 ];
 
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, LoginComponent, RegisterUserComponent],
+  declarations: [AppComponent, NavbarComponent, LoginComponent, RegisterUserComponent, HomeComponent, TformularioComponent, TdetallesComponent],
   imports: [RouterModule.forRoot(appRoutes), BrowserModule, FormsModule, HttpClientModule, SocialLoginModule],
   providers: [
     {
