@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Home</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+</head>
+
+<body>
+	<header>
+		<section class="busqueda-header">
+				<h1>Chambitas</h1>
+            	<h2>Busca el Trabajo ideal para tí</h2>          
+        </section>
+		<div class="wave" style="height: 125px; overflow: hidden;">
+			<svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                style="height: 100%; width: 100%;">
+                <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                style="stroke: none; fill: #0275D8;"></path>
+            </svg>
+        </div>
+	</header>
+	<main>
+		<!-- Trabajos -->
+		<div class="container-fluid bg-primary">
+			<div class="container py-3">
+				<div class="input-group">
+					<!-- Trabajos 01 -->
+					<div class="col-md-12" *ngIf="trabajo">
+						<div class="card text-center">
+							<div class="card-header"> <b>Nombre Trabajos:{{trabajo.nombreTrabajo}} </b> </div>
+							<div class="card-block">
+								<div class="py-3">
+									<img width="35%" alt="Pagina en construccion" src="https://i.pinimg.com/474x/d0/6d/7a/d06d7ad52298606db860913a3d83f3b2.jpg" class="mx-auto" style="border-radius: 40px;">
+								</div>
+								<p class="card-text text-center">
+									<b>lugar:</b> Miraflores <br>
+									<b>fecha:</b> 18/10/2020 <br>
+									<b>Detalles:</b> El trabajo... <br>
+									<b>Empleador:</b> Jhoel Huallpar <br>
+									<b>Contacto:</b> 984490903
+								</p>
+							</div>
+							<div>
+								<a href="" class=" card-footer btn bg-primary text-white" style="border-radius: 130px;"> Enviar solicitud</a>
+							</div>
+						</div>
+					</div> <!-- Trabajos 01-->
+				</div>
+			</div>
+		</div> <!-- Trabajos -->
+	</main>
+
+</body>
+
+<footer>
+    <h2 class="titulo-final">&copy; Chambitas | Arequipa - 2020</h2>
+</footer>
+
+</html>

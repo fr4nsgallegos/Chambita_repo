@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Home</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+</head>
+
+<body>
+	<header>
+		<section class="texto-header">
+            	<h2>Publique un empleo</h2>
+           		<h1>Para que sea visto por todos</h1>
+        </section>
+		<div class="wave" style="height: 125px; overflow: hidden;">
+			<svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                style="height: 100%; width: 100%;">
+                <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                style="stroke: none; fill: #036C89;"></path>
+            </svg>
+        </div>
+	</header>
+	<main>
+		<div class="formulario-form">
+        <form ngNativeValidate action="">
+            <div class="form-group">
+            	<section class="texto-formulario">
+            		<h4>COMENCEMOS</h4>
+           			<h3>Nombre del trabajo:</h3>
+           			<input type="text" class="form-control item" name="nomb_trab" [(ngModel)]="trabajo.nombreTrabajo" placeholder="" required autofocus>
+           			<h3>Descripción del trabajo:</h3>
+           			<textarea class="form-control" name="descr_trab" [(ngModel)]="trabajo.descTrabajo" rows="2"></textarea>
+           			<h3>Pago del trabajo:</h3>
+           			<input type="text" class="form-control item" name="pago_trab" [(ngModel)]="trabajo.pagoTrabajo" placeholder="" required >
+                <h3>Estado del trabajo:</h3>
+                <select class="selectpicker" class="form-control" data-live-search="true" name="estado" [(ngModel)]="trabajo.estado" data-live-search-style="startsWith">
+                    <option value="" disabled selected>Estado del Trabajo</option>
+                    <option data-tokens="Activo">Activo</option>
+                    <option data-tokens="Inactivo">Inactivo</option>
+                </select>
+                <h3>Fecha de inicio del Trabajo:</h3>
+                <input type="date" class="form-control item" name="fech_inicio" [(ngModel)]="trabajo.fechaInicio"placeholder="" required >
+                <h3>Fecha de finalización del Trabajo:</h3>
+                <input type="date" class="form-control item" name="fech_fin" [(ngModel)]="trabajo.fechaFinal"placeholder="" required >
+                <h3>Plazo de la postulación del trabajo:</h3>
+                <input type="date" class="form-control item" name="plazo_trab" [(ngModel)]="trabajo.plazoPostulacion" placeholder="" required >
+                <h3>Ubicación - Distrito:</h3>
+                <input type="text" class="form-control item" name="distrito" [(ngModel)]="trabajo.distrito"placeholder="" required >
+                <h3>Ubicación - Dirección:</h3>
+                <input type="text" class="form-control item" name="direccion" [(ngModel)]="trabajo.direccion"placeholder="" required >
+           			<h3>DNI del Empleador:</h3>
+           			<input type="number" class="form-control item" name="dni_empleador" [(ngModel)]="trabajo.dniEmpleador" min="1" pattern="^[0-9]+">
+                <input type="submit" class="create-job" (click)="edit ? updateTrabajo() : saveNewTrabajo()">
+        		</section>
+            </div>
+        </form>
+ </div>
+	</main>
+</body>
+
+<footer>
+    <h2 class="titulo-final">&copy; Chambitas | Arequipa - 2020</h2>
+</footer>
+
+</html>
