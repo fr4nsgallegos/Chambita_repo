@@ -17,58 +17,78 @@ source = requests.get('https://www.computrabajo.com.pe/empleos-en-arequipa-jorna
 
 soup = BeautifulSoup(source, 'lxml')
 
+paginas = soup.find('div', class_='paginas').find_all('li')
+
+#for p in range(len(paginas)-1):
+#    pagina = paginas[p]
+#    pag_url = pagina.find("a")["href"]
+#    print(pag_url)
 #file1 = open('dochtml.txt','w')
 #file1.write(soup.body.prettify())
 #file1.close()
 
-#obtener url de trabajo
-cajas = soup.find_all('div', class_='bRS')
+for i in range(len(paginas)-1):
+    pagina = paginas[i]
+    pag_url = pagina.find("a")["href"]
+    print(pag_url)
 
-#trabajos de manera individual
-#caja = cajas[1]
-for caja in cajas:
-    url_id=caja.find("a")["href"]
-    url_trabajo = 'https://www.computrabajo.com.pe' + url_id
+    source_ind = requests.get(pag_url).text
+    soup_ind = BeautifulSoup(source_ind, 'lxml')
+    #obtener url de trabajo
+    cajas = soup_ind.find_all('div', class_='bRS')
 
-    t_pagina = requests.get(url_trabajo).text
-    trab_soup = BeautifulSoup(t_pagina, 'lxml')
+    #trabajos de manera individual
+    #caja = cajas[1]
+    for caja in cajas:
+        url_id=caja.find("a")["href"]
+        url_trabajo = 'https://www.computrabajo.com.pe' + url_id
+        print(url_trabajo)
 
-    #caja de resumen
-    #####resumen_t = trab_soup.find('section', class_='box_r').find_all('li')
-    resumen_t = trab_soup.find('section', class_='box_r').find('ul')
-    ####titulo_t = resumen_t[0].p.text.strip()
-    titulo_t = resumen_t.find_all('li')[0].p.text.strip()
-    ####empresa_t = resumen_t[1].p.a.text.strip()
-    try:
-        empresa_t = resumen_t.find("h3", string=re.compile("Empresa")).find_next_siblings()[0].a.text
-    except Exception as e:
-        empresa_t = "No especifica"
+        t_pagina = requests.get(url_trabajo).text
+        trab_soup = BeautifulSoup(t_pagina, 'lxml')
 
-    ####contrato_t = resumen_t[4].p.text.strip()
-    contrato_t = resumen_t.find("h3", string=re.compile("Tipo de contrato")).find_next_siblings()[0].text.strip()
-    ####salario_t = resumen_t[5].p.text.strip()
-    salario_t = resumen_t.find("h3", string=re.compile("Salario")).find_next_siblings()[0].text.strip()
+        #caja de resumen
+        #####resumen_t = trab_soup.find('section', class_='box_r').find_all('li')
+        resumen_t = trab_soup.find('section', class_='box_r').find('ul')
+        ####titulo_t = resumen_t[0].p.text.strip()
+        titulo_t = resumen_t.find_all('li')[0].p.text.strip()
+        ####empresa_t = resumen_t[1].p.a.text.strip()
+        try:
+            empresa_t = resumen_t.find("h3", string=re.compile("Empresa")).find_next_siblings()[0].a.text
+        except Exception as e:
+            empresa_t = "No especifica"
 
-    #detalles y requisitos
-    detalles_t = trab_soup.find('div', class_='bWord').find('ul')
-    descrip_t = detalles_t.find_all('li')[1].get_text(separator="\n").strip()
-    req_t = detalles_t.select("h3 ~ li")
-    req_ed = req_t[0].text
-    req_exp = req_t[1].text
+        ####contrato_t = resumen_t[4].p.text.strip()
+        contrato_t = resumen_t.find("h3", string=re.compile("Tipo de contrato")).find_next_siblings()[0].text.strip()
+        ####salario_t = resumen_t[5].p.text.strip()
+        salario_t = resumen_t.find("h3", string=re.compile("Salario")).find_next_siblings()[0].text.strip()
 
-    #formato json
-    tr_json = {
-                    "nombre":titulo_t,
-                    "empresa":empresa_t,
-                    "tipo":contrato_t,
-                    "salario":salario_t,
-                    "requisitos":{
-                    "educacion":req_ed,
-                    "experiencia":req_exp},
-                    "descripcion":descrip_t
-                }
-    print(tr_json)
-    temp.append(tr_json)
+        #detalles y requisitos
+        detalles_t = trab_soup.find('div', class_='bWord').find('ul')
+        descrip_t = detalles_t.find_all('li')[1].get_text(separator="\n").strip()
+        req_t = detalles_t.select("h3 ~ li")
+        req_ed = req_t[0].text
+        req_exp = req_t[1].text
+
+        #fecha
+        fecha_t = caja.find('span', class_='dO').text
+        print(fecha_t)
+        #formato json
+        tr_json = {
+                        "nombre":titulo_t,
+                        "empresa":empresa_t,
+                        "fecha":fecha_t,
+                        "tipo":contrato_t,
+                        "salario":salario_t,
+
+                        "educacion":req_ed,
+                        "experiencia":req_exp,
+                        "descripcion":descrip_t,
+
+                        "url": url_trabajo
+                    }
+        print(tr_json)
+        temp.append(tr_json)
 
 
 write_json(data)
