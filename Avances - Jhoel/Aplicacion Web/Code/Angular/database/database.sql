@@ -1,0 +1,15 @@
+CREATE DATABASE chambas;
+
+USE chambas;
+
+CREATE TABLE usuario(
+
+	id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	correo VARCHAR(250)NOT NULL,
+	clave VARCHAR(250)NOT NULL,
+	nro_celular VARCHAR(15) NOT NULL
+)
+
+RENAME TABLE usuario to usuarios;
+
+DESCRIBE usuario;

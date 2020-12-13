@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Register-User</title>
+    <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href='https://use.fontawesome.com/releases/v5.8.1/css/all.css'>
+</head>
+<body>
+    <div class="registration-form">
+        <form ngNativeValidate action="">
+            <div class="form-icon">
+                <span><i class="icon icon-user"></i></span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" name="correo" [(ngModel)]="usuario.correo" placeholder="Correo" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" autofocus required> 
+                <input type="text" class="form-control item" name="clave" [(ngModel)]="usuario.clave" placeholder="Contraseña"  minlength="6" maxlength="10" required>
+                <input type="text" class="form-control item" name="nro_celular" [(ngModel)]="usuario.nro_celular" placeholder="Nro de celular" pattern="[0-9]+" minlength="9" maxlength="9" required>
+                <select class="selectpicker" class="form-control" data-live-search="true" name="tipoUsuario" [(ngModel)]="usuario.tipoUsuario" data-live-search-style="startsWith">
+                    <option value="" disabled selected>Tipo de Trabajador</option>
+                    <option data-tokens="Trabajador">Trabajador</option>
+                    <option data-tokens="Empleador">Empleador</option>
+                </select>
+                <input type="submit" class="create-account" (click)="edit ? updateUsuario() : saveNewUsuario()">
+            </div>
+            <div class="social-media">
+				<h5>Registrarse con redes sociales</h5>
+				 <div class="col-md-12">
+                        <ul class="social-network social-circle">
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google"><i class="fab fa-google"></i></a></li>
+                        </ul>
+                    </div>
+                <h5><a href="/login">Tengo una cuenta</a></h5>
+        	</div>
+        </form>
+ </div>
+</body>
+</html>

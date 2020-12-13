@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Home</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+</head>
+
+<body>
+	<header>
+		<section class="busqueda-header">
+				<h1>Chambitas</h1>
+            	<h2>Busca el Trabajo ideal para tí</h2>
+			<div class="input-group">
+				   	<input type="text" class="form-control mx-1" placeholder="Buscar trabajos">
+				 
+					<select class="selectpicker" class="form-control" data-live-search="true" data-live-search-style="startsWith" >
+					    <option data-tokens="Ciudades">Ciudades</option>
+						<option data-tokens="Arequipa">Arequipa</option>
+						<option data-tokens="Cayma">Cayma</option>
+						<option data-tokens="Hunter">Hunter</option>
+					</select>
+			    <div class="input-group-append">
+			      <button class="btn btn-primary" type="button">
+			        <i class="fa fa-search"></i> Buscar
+			      </button>
+			    </div>
+		    </div>           
+        </section>
+		<div class="wave" style="height: 125px; overflow: hidden;">
+			<svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                style="height: 100%; width: 100%;">
+                <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                style="stroke: none; fill: #0275D8;"></path>
+            </svg>
+        </div>
+	</header>
+	<main>
+		<!-- Trabajos -->
+		<div class="container-fluid bg-primary  mb-3">
+			<div class="container py-3">
+				<div class="row">
+					<!-- Trabajos 01 -->
+					<div class="col-md-4" *ngFor="let trabajo of trabajos">
+						<div class="card text-center">
+							<div class="card-header d-flex justify-content-between align-items-center text-primary"> <h4><b>{{trabajo.nombreTrabajo}}</b></h4> 
+								<button class="btn btn-danger" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="bottom" (confirm)="deleteTrabajos(trabajo.idTrabajo)" (cancel)="cancelClicked = true">
+							       <i class="fa fa-trash-o" ></i>
+							    </button>
+							</div>
+							<div class="card-block">
+								<div class="py-3">
+									<img width="25%" alt="Pagina en construccion" src="https://i.pinimg.com/474x/d0/6d/7a/d06d7ad52298606db860913a3d83f3b2.jpg" class="mx-auto" style="border-radius: 130px;">
+								</div>
+								<p class="card-text" style="min-height: 4rem;"> {{trabajo.descTrabajo}} </p>
+								<div class="card-footer text-muted"> S/ {{trabajo.pagoTrabajo}} </div>
+								<div class="card-footer text-muted"> {{trabajo.distrito}} - {{trabajo.direccion}} </div>
+							</div>
+							<div>
+								<a href="/tdetalles" style="border-radius: 130px;" class="card-footer btn bg-primary text-white" (click)="getTrabajo(trabajo)"> Detalles </a>
+							</div>
+						</div>
+						<div style="min-height: 2rem;"></div>
+					</div> <!-- Trabajos 01 -->
+				</div>
+			</div>
+		</div> <!-- Trabajos -->
+	</main>
+</body>
+
+<footer>
+    <h2 class="titulo-final">&copy; Chambitas | Arequipa - 2020</h2>
+</footer>
+
+</html>
